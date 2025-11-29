@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Видео на весь экран</title>
+
+    <!-- Иконки сайта -->
+    <link rel="icon" href="icon.png" type="image/png">
+    <link rel="shortcut icon" href="favicon.ico">
+    <link rel="apple-touch-icon" href="apple-touch-icon.png">
+
+    <style>
+        html, body {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            width: 100%;
+            overflow: hidden;
+            background: #000;
+        }
+
+        video {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            min-width: 100%;
+            min-height: 100%;
+            width: auto;
+            height: auto;
+            transform: translate(-50%, -50%);
+            object-fit: cover;
+            z-index: -1;
+        }
+
+        /* Полностью убираем все элементы управления во всех браузерах */
+        video::-webkit-media-controls { display: none !important; }
+        video::-webkit-media-controls-panel { display: none !important; }
+        video::-webkit-media-controls-play-button { display: none !important; }
+        video::-webkit-media-controls-volume-slider { display: none !important; }
+        video::-webkit-media-controls-timeline { display: none !important; }
+        video::-webkit-media-controls-current-time-display { display: none !important; }
+        video::-webkit-media-controls-time-remaining-display { display: none !important; }
+        video::-webkit-media-controls-mute-button { display: none !important; }
+        video::-webkit-media-controls-fullscreen-button { display: none !important; }
+        video::-webkit-media-controls-overlay-play-button { display: none !important; }
+        video::-moz-media-controls { display: none !important; }
+        video::-ms-media-controls { display: none !important; }
+        video::media-controls { display: none !important; }
+    </style>
+</head>
+<body>
+
+    <video 
+        autoplay 
+        muted 
+        loop 
+        playsinline 
+        disablePictureInPicture
+        controlslist="nodownload nofullscreen noremoteplayback noplaybackrate"
+        poster="IMG_1057.jpeg"> <!-- твоя картинка будет показываться до загрузки видео -->
+        <source src="v12044gd0000d2uslg7og65mfnja999g.mp4" type="video/mp4">
+        Ваш браузер не поддерживает видео.
+    </video>
+
+    <script>
+        const video = document.querySelector('video');
+
+        // Запрещаем показывать контролы по клику/тапу
+        video.addEventListener('click', e => {
+            e.preventDefault();
+            e.stopPropagation();
+        }, true);
+
+        // Помогает автозапуску на iPhone/Android
+        document.body.addEventListener('touchstart', () => {}, { once: true });
+    </script>
+
+</body>
+</html>
